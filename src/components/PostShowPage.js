@@ -1,9 +1,13 @@
 import React from 'react';
 import {PostDetails} from './PostDetails';
 import {CommentDetails} from './CommentDetails';
+import {CommentList} from './CommentList';
+import post from '../data/post'
 
 
 function PostShowPage(){
+  const {comments=[]} = post;
+
   const containerStyle = {
     paddingLeft: '20px',
     fontFamily: 'sans-serif',
@@ -12,19 +16,8 @@ function PostShowPage(){
   return(
     <main className="PostShowPage" style={containerStyle}>
       <h4 style={{fontSize:'30px', color:'Red'}}>Post Show</h4>
-      <PostDetails
-        title="abc"
-        body="things ..."
-        author={{full_name: "Jon Snow"}}
-        created_at="2018-2-3"
-        updated_at="2018-2-3"
-      />
-      <CommentDetails
-        body="comment1"
-        author_full_name="Mary Lee"
-        created_at="2018-2-3"
-        updated_at="2018-2-3"
-      />
+      <PostDetails {...post}/>
+      <CommentList comments={comments}/>
     </main>
   )
 }
