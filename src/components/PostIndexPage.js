@@ -35,6 +35,7 @@ class PostIndexPage extends Component{
                 <a href="">{post.title}</a>
                 {' '}
                 <button
+                  style={{backgroundColor:'pink', marginLeft:'10px'}}
                   onClick={this.deletePost(post.id)}
                   >d e l e t e</button>
               </li>

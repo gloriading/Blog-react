@@ -10,6 +10,13 @@ class PostShowPage extends Component{
     this.state = {
       post:post
     };
+    this.delete = this.delete.bind(this);
+  }
+
+  delete(){
+    this.setState({
+      post:{}
+    });
   }
 
   render(){
@@ -21,10 +28,24 @@ class PostShowPage extends Component{
       fontFamily: 'sans-serif',
       fontSize: '20px'
      }
+
+     if(Object.keys(this.state.post).length < 1){
+       return (
+          <main className="PostShowPage" style={containerStyle}>
+            <h4>Post does not exist.</h4>
+          </main>
+       );
+     }
+
     return(
       <main className="PostShowPage" style={containerStyle}>
         <h4 style={{fontSize:'30px', color:'Red'}}>Post Show</h4>
         <PostDetails {...this.state.post}/>
+        <button
+          style={{backgroundColor:'pink', marginLeft:'10px'}}
+          onClick={this.delete}>
+          d e l e t e
+        </button>
         <CommentList comments={comments}/>
       </main>
     )
