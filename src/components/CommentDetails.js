@@ -2,7 +2,7 @@ import React from 'react';
 
 function CommentDetails(props={}){
   return(
-    <div>
+    <div className="CommentDetails">
         <h4>Comment:</h4>
         <p>Body: {props.body}</p>
         <p>By {props.author_full_name}</p>

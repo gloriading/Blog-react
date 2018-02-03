@@ -4,8 +4,13 @@ import {CommentDetails} from './CommentDetails';
 
 
 function PostShowPage(){
+  const containerStyle = {
+    paddingLeft: '20px',
+    fontFamily: 'sans-serif',
+    fontSize: '20px'
+   }
   return(
-    <main className="PostShowPage">
+    <main className="PostShowPage" style={containerStyle}>
       <PostDetails
         title="abc"
         body="things ..."
