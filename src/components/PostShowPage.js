@@ -11,12 +11,25 @@ class PostShowPage extends Component{
       post:post
     };
     this.delete = this.delete.bind(this);
+    this.deleteComment = this.deleteComment.bind(this);
   }
 
   delete(){
     this.setState({
       post:{}
     });
+  }
+
+  deleteComment(commentId){
+    const {post} = this.state;
+    const {comments} = post;
+    this.setState({
+      post:{
+        ...post,
+        comments: comments.filter(comment => comment.id !== commentId)
+      }
+    });
+
   }
 
   render(){
@@ -46,7 +59,10 @@ class PostShowPage extends Component{
           onClick={this.delete}>
           d e l e t e
         </button>
-        <CommentList comments={comments}/>
+        <CommentList
+          comments={comments}
+          onCommentDeleteClick={this.deleteComment}
+        />
       </main>
     )
 
