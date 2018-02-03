@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import {PostShowPage} from './PostShowPage';
+import {PostIndexPage} from './PostIndexPage';
 
 function App(){
   return(
-    <PostShowPage />
+    <div className='App'>
+      <PostShowPage />
+      <PostIndexPage />
+    </div>
   )
 }
 
