@@ -4,9 +4,24 @@ import posts from '../data/posts'
 class PostIndexPage extends Component{
   constructor(props){
     super(props);
+
     this.state={
       posts:posts
     };
+
+    this.deletePost = this.deletePost.bind(this);
+  }
+
+  deletePost(postId){
+    return () =>{
+      const {posts} = this.state;
+      this.setState({
+        posts:posts
+        .filter(post=> post.id !== postId)
+      });
+    }
+
+
   }
 
   render(){
@@ -18,6 +33,10 @@ class PostIndexPage extends Component{
             this.state.posts.map(post=>(
               <li key={post.id} style={{fontSize:'20px'}}>
                 <a href="">{post.title}</a>
+                {' '}
+                <button
+                  onClick={this.deletePost(post.id)}
+                  >d e l e t e</button>
               </li>
             ))
           }
