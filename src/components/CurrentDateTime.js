@@ -33,7 +33,7 @@ import React, {Component} from 'react';
      const {dateTime} = this.state;
 
      return (
-       <span className="CurrentDateTime">
+       <span className="CurrentDateTime" style={this.props.style}>
          {dateTime.toLocaleDateString()} {dateTime.toLocaleTimeString()}
        </span>
      );
