@@ -11,7 +11,7 @@ import React from 'react';
      event.preventDefault();
      onSubmit();
    };
-   
+
    const handleChange = name => event => {
      onChange({[name]: event.currentTarget.value});
     };
@@ -32,7 +32,7 @@ import React from 'react';
 
        <div>
          <label htmlFor="body">Body</label> <br />
-         <input
+         <textarea
            onChange={handleChange("body")}
            value={post.body}
            name="body"

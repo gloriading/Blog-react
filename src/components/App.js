@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import {PostShowPage} from './PostShowPage';
 import {PostIndexPage} from './PostIndexPage';
+import {PostNewPage} from './PostNewPage';
 import {NavBar} from './NavBar';
 import {
  BrowserRouter as Router,
- Link,
+ Switch,
  Route
 } from 'react-router-dom';
 
@@ -13,8 +14,12 @@ function App(){
     <Router >
       <div className='App'>
         <NavBar />
-        <Route path="/posts" exact component={PostIndexPage} />
-        <Route path="/posts/:id" component={PostShowPage} />
+        <Switch>
+          <Route path="/posts" exact component={PostIndexPage} />
+          {/* new must higher than show  */}
+          <Route path="/posts/new" component={PostNewPage} />
+          <Route path="/posts/:id" component={PostShowPage} />
+        </Switch>
       </div>
     </Router>
   )

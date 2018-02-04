@@ -72,7 +72,7 @@ class PostShowPage extends Component{
     return(
       <main className="PostShowPage" style={containerStyle}>
         <h4 style={{fontSize:'30px', color:'Red'}}>Post Show</h4>
-        <PostDetails {...this.state.post}/>
+        <PostDetails {...post}/>
         <button
           style={{backgroundColor:'pink', marginLeft:'10px'}}
           onClick={this.delete}>

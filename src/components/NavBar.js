@@ -11,6 +11,7 @@ import React from 'react';
        }}
      >
        <Link style={{marginRight: '20px'}} to="/">Home</Link>
+       <Link style={{marginRight: '20px'}} to="/posts/new">New Post</Link>
        <Link to="/posts">Posts</Link>
        <CurrentDateTime
          style={{

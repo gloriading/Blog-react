@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {PostForm} from './PostForm';
 import {Post} from '../requests/posts';
 import {Link} from 'react-router-dom';
 
@@ -9,17 +8,10 @@ class PostIndexPage extends Component{
 
     this.state={
       loading:true,
-      posts:[],
-      newPost:{
-        title:"",
-        body:"",
-        author:{}
-      }
+      posts:[]
     };
 
     this.deletePost = this.deletePost.bind(this);
-    this.addPost = this.addPost.bind(this);
-    this.updateNewPost = this.updateNewPost.bind(this);
   }
 
   componentDidMount(){
@@ -40,28 +32,9 @@ class PostIndexPage extends Component{
     };
   }
 
-  addPost(){
-    const {posts, newPost} = this.state;
-    this.setState({
-      posts:[newPost, ...posts],
-      newPost:{
-        title:"",
-        body:"",
-        author:{}
-      }
-    });
-  }
-
-  updateNewPost(data){
-    console.log(data);
-    const {newPost} = this.state;
-    this.setState({
-      newPost: {...newPost, ...data}
-    })
-  }
 
   render(){
-    const {newPost, loading, posts} = this.state;
+    const {loading, posts} = this.state;
 
 
     if(loading){
@@ -75,10 +48,6 @@ class PostIndexPage extends Component{
     return(
       <main className="PostIndexPage" style={{paddingLeft: '20px'}}>
         <h4 style={{fontSize:'30px', color:'green'}}>Post Index</h4>
-        <PostForm
-          post = {newPost}
-          onChange={this.updateNewPost}
-          onSubmit={this.addPost} />
         <ul>
           {
             posts.map(post=>(
