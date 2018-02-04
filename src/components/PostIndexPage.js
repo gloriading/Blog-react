@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
-import posts from '../data/posts';
 import {PostForm} from './PostForm';
+import {Post} from '../requests/posts'
 
 class PostIndexPage extends Component{
   constructor(props){
     super(props);
 
     this.state={
-      posts: posts,
+      loading:true,
+      posts:[],
       newPost:{
         title:"",
         body:"",
@@ -18,6 +19,14 @@ class PostIndexPage extends Component{
     this.deletePost = this.deletePost.bind(this);
     this.addPost = this.addPost.bind(this);
     this.updateNewPost = this.updateNewPost.bind(this);
+  }
+
+  componentDidMount(){
+    Post
+    .all()
+    .then(posts=>{
+      this.setState({loading:false, posts})
+    });
   }
 
   deletePost(postId){
@@ -51,7 +60,17 @@ class PostIndexPage extends Component{
   }
 
   render(){
-    const {newPost} = this.state;
+    const {newPost, loading, posts} = this.state;
+
+
+    if(loading){
+      return(
+        <main className="PostIndexPage" style={{paddingLeft: '20px'}}>
+          <h4 style={{color:'red', fontSize:'20px'}}>Loading...</h4>
+        </main>
+      )
+    }
+
     return(
       <main className="PostIndexPage" style={{paddingLeft: '20px'}}>
         <h4 style={{fontSize:'30px', color:'green'}}>Post Index</h4>
@@ -61,7 +80,7 @@ class PostIndexPage extends Component{
           onSubmit={this.addPost} />
         <ul>
           {
-            this.state.posts.map(post=>(
+            posts.map(post=>(
               <li key={post.id} style={{fontSize:'20px'}}>
                 <a href="">{post.title}</a>
                 {' '}
