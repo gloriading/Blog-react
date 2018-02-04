@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {PostForm} from './PostForm';
 import {Post} from '../requests/posts';
+import {Link} from 'react-router-dom';
 
 class PostIndexPage extends Component{
   constructor(props){
@@ -82,7 +83,8 @@ class PostIndexPage extends Component{
           {
             posts.map(post=>(
               <li key={post.id} style={{fontSize:'20px'}}>
-                <a href="">{post.title}</a>
+                <Link to={`/posts/${post.id}`}>{post.title}</Link>
+
                 {' '}
                 <button
                   style={{backgroundColor:'pink', marginLeft:'10px'}}

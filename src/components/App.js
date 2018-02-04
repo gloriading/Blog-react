@@ -14,7 +14,7 @@ function App(){
       <div className='App'>
         <NavBar />
         <Route path="/posts" exact component={PostIndexPage} />
-        <Route path="/posts/id" component={PostShowPage} />
+        <Route path="/posts/:id" component={PostShowPage} />
       </div>
     </Router>
   )

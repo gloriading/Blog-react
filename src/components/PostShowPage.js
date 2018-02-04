@@ -16,8 +16,10 @@ class PostShowPage extends Component{
   }
 
   componentDidMount(){
+    const {params} = this.props.match;
+
     Post
-    .get(331)
+    .get(params.id)
     .then(post=>{
       this.setState({loading:false, post})
     });
