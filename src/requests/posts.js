@@ -1,5 +1,9 @@
- const API_KEY = 'cb79206736558221f25e2062fa6d0e6015c73820122077002c22b73fac024aea';
- const BASE_URL = 'http://localhost:3000';
+import {BASE_URL} from './config';
+// const API_KEY = 'API_KEY cb79206736558221f25e2062fa6d0e6015c73820122077002c22b73fac024aea';
+function getJwt () {
+   return `JWT ${localStorage.getItem('jwt')}`;
+ }
+
 
  // HTTP REQUESTS
 
@@ -10,7 +14,7 @@
        `${BASE_URL}/api/v1/posts`,
        {
          headers: {
-           'Authorization': API_KEY
+           'Authorization': getJwt()
          }
        }
      )
@@ -21,7 +25,7 @@
        `${BASE_URL}/api/v1/posts/${id}`,
        {
          headers: {
-           'Authorization': API_KEY
+           'Authorization': getJwt()
          }
        }
      )
@@ -33,7 +37,7 @@
        {
          method: 'POST',
          headers: {
-           'Authorization': API_KEY,
+           'Authorization': getJwt(),
            'Content-Type': 'application/json'
          },
          body: JSON.stringify(params)
