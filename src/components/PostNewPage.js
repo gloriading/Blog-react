@@ -10,7 +10,8 @@ class PostNewPage extends Component {
      newPost: {
        title: "",
        body: ""
-     }
+     },
+     validationErrors: []
    };
 
    this.createPost = this.createPost.bind(this);
@@ -30,13 +31,21 @@ class PostNewPage extends Component {
    const {newPost} = this.state;
    Post
      .create(newPost)
-     .then(({id}) => {
-       history.push(`/posts/${id}`)
+     .then(data => {
+       if (data.errors) {
+         this.setState({
+           validationErrors: data
+             .errors
+             .filter(e => e.type === 'ActiveRecord::RecordInvalid')
+         });
+       } else {
+         history.push(`/posts/${data.id}`)
+       }
      });
  }
 
  render () {
-   const {newPost} = this.state;
+   const {newPost, validationErrors} = this.state;
 
    return (
      <main
@@ -45,6 +54,7 @@ class PostNewPage extends Component {
      >
        <h2>Post</h2>
        <PostForm
+         errors={validationErrors}
          post={newPost}
          onChange={this.updateNewPost}
          onSubmit={this.createPost}

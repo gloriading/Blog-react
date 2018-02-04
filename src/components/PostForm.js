@@ -1,10 +1,12 @@
 import React from 'react';
+import {FormErrors} from './FormErrors';
 
  function PostForm (props) {
    const {
      onSubmit = () => {},
      onChange = () => {},
-     post = {}
+     post = {},
+     errors = []
    } = props;
 
    const handleSubmit = event => {
@@ -28,6 +30,7 @@ import React from 'react';
            value={post.title}
            name="title"
            id="title" />
+            <FormErrors forField='title' errors={errors} />
        </div>
 
        <div>
@@ -37,6 +40,7 @@ import React from 'react';
            value={post.body}
            name="body"
            id="body" />
+            <FormErrors forField='body' errors={errors} />
        </div>
 
        <div>
