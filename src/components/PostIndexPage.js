@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {PostForm} from './PostForm';
-import {Post} from '../requests/posts'
+import {Post} from '../requests/posts';
 
 class PostIndexPage extends Component{
   constructor(props){

@@ -1,17 +1,26 @@
 import React, {Component} from 'react';
 import {PostDetails} from './PostDetails';
 import {CommentList} from './CommentList';
-import post from '../data/post'
+import {Post} from '../requests/posts';
 
 
 class PostShowPage extends Component{
   constructor (props) {
     super(props);
     this.state = {
-      post:post
+      post:{},
+      loading:true
     };
     this.delete = this.delete.bind(this);
     this.deleteComment = this.deleteComment.bind(this);
+  }
+
+  componentDidMount(){
+    Post
+    .get(331)
+    .then(post=>{
+      this.setState({loading:false, post})
+    });
   }
 
   delete(){
@@ -33,14 +42,22 @@ class PostShowPage extends Component{
   }
 
   render(){
-
-    const {comments=[]} = this.state.post;
+    const {post, loading} = this.state;
+    const {comments=[]} = post;
 
     const containerStyle = {
       paddingLeft: '20px',
       fontFamily: 'sans-serif',
       fontSize: '20px'
      }
+
+     if (loading) {
+        return (
+          <main className="PostShowPage" style={containerStyle}>
+            <h4>Loading post...</h4>
+          </main>
+        )
+      }
 
      if(Object.keys(this.state.post).length < 1){
        return (
